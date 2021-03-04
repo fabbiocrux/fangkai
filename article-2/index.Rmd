@@ -27,7 +27,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 # Options for Knirt
-knitr::opts_chunk$set(echo = FALSE,  include=FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE,  include=FALSE, warning = FALSE, message = FALSE)
 options(knitr.kable.NA = '-')
 
 # Packages for the analysis
@@ -48,7 +48,7 @@ theme_set(theme_bw(base_size = 15, base_family = "Palatino"))
 ## Data from December 2020
 Last update: `r Sys.Date()`
 
-```{r, include=TRUE}
+```{r, include=TRUE, echo = FALSE}
 
 # Reading the Data
 Anova <- read_excel(here("Data Decembre 2020/ANOVA.xlsx")) 
