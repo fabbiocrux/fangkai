@@ -1,0 +1,63 @@
+
+
+```{r Databases, eval=FALSE}
+# Loading the data from Excel
+path <- "Data for Analysis/"
+file_names <- paste0(path, list.files(path = path, pattern="*.xlsx"))
+
+Raw.Amplitude <- 
+   read_excel(file_names[1]) %>% 
+      rownames_to_column(var = "ID") %>% 
+         gather(ID, value = "Frequency") %>% rownames_to_column(var = "Measure")
+
+Raw.frequency <- 
+   read_excel(file_names[2]) %>% 
+      rownames_to_column(var = "ID") %>% 
+         gather(ID, value = "Amplitude") %>% rownames_to_column(var = "Measure")
+
+Global.summary <- read_excel(file_names[3])
+names(Global.summary) <- 
+  c("ID", "Type_sample", "Number_sample", "Raster angle", "Build direction", "Number of contours",  "Type", "Weight",
+    "Width_mean","E_mean",
+    "FM 1","FM 2", "FM 3", "FM 4", 
+    "AM 1", "AM 2", "AM 3", "AM 4",
+    "LFM 1", "LFM 2", "LFM 3", "LFM 4"
+  )
+
+Global.summary$Type_sample = as.factor(Global.summary$Type_sample)
+
+# Make datatable 
+Raw.data = inner_join(Raw.frequency, Raw.Amplitude, by = c("Measure","ID"))
+# Complete it with global elements
+Raw.data =  inner_join(Raw.data, Global.summary %>% select(ID : Weight), by = c("ID"))
+
+```
+
+
+
+
+## Goal 
+
+The main goal is to do the data analysis of the Fangkai thesis
+
+# Raw Analysis
+## Frequency Vs. Amplitude
+
+```{r, include=TRUE, fig.width = 8, fig.height= 13, dpi=100, eval=FALSE}
+
+ggplot(Raw.data, aes(y = Frequency, x= Amplitude, color=ID )) +
+    geom_point( alpha = 1/10) +
+  #coord_trans(x="log2", y="log2") + 
+   scale_x_log10(
+   breaks = scales::trans_breaks("log10", function(x) 10^x),
+   labels = scales::trans_format("log10", scales::math_format(10^.x))
+ ) +
+ scale_y_log10(
+   breaks = scales::trans_breaks("log10", function(x) 10^x),
+   labels = scales::trans_format("log10", scales::math_format(10^.x))
+ ) +
+  annotation_logticks() +
+ facet_grid(Type_sample ~ .) +
+ theme_bw()
+
+```
