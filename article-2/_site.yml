@@ -1,0 +1,13 @@
+name: "article-2"
+title: "Fangkai Thesis"
+description: |
+  Fangkai Thesis
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+#    - text: "About"
+#      href: about.html
+exclude: ['download/']      
+output: distill::distill_article

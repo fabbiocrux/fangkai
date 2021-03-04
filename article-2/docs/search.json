@@ -1,0 +1,30 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\n\n\n\n\n\n\n\n\n\n",
+      "last_modified": "2021-03-04T19:41:39+01:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Experimental Vibratory Analysis",
+      "description": "Data analysis for the Article 2\n",
+      "author": [
+        {
+          "name": {},
+          "url": {}
+        },
+        {
+          "name": {},
+          "url": {}
+        }
+      ],
+      "contents": "\nExperimental context\n\nThe main idea is to evaluate the influence of printing parameters in the Vibrational response of printed samples\n\nData from December 2020\nLast update: 2021-03-04\n\n\nTable 1: Data for Anova\n\n\nRaster\n\n\nTemperature\n\n\nLayer\n\n\nSpeed\n\n\nvalue\n\n\n1\n\n\n1\n\n\n1\n\n\n1\n\n\n25.074\n\n\n1\n\n\n1\n\n\n1\n\n\n1\n\n\n24.835\n\n\n1\n\n\n1\n\n\n2\n\n\n2\n\n\n24.835\n\n\n1\n\n\n1\n\n\n2\n\n\n2\n\n\n24.511\n\n\n1\n\n\n1\n\n\n3\n\n\n3\n\n\n25.194\n\n\n1\n\n\n1\n\n\n3\n\n\n3\n\n\n25.074\n\n\n1\n\n\n2\n\n\n1\n\n\n1\n\n\n24.984\n\n\n1\n\n\n2\n\n\n1\n\n\n1\n\n\n25.224\n\n\n1\n\n\n2\n\n\n2\n\n\n2\n\n\n25.375\n\n\n1\n\n\n2\n\n\n2\n\n\n2\n\n\n24.954\n\n\n1\n\n\n2\n\n\n3\n\n\n3\n\n\n24.776\n\n\n1\n\n\n2\n\n\n3\n\n\n3\n\n\n25.285\n\n\n1\n\n\n3\n\n\n1\n\n\n2\n\n\n25.194\n\n\n1\n\n\n3\n\n\n1\n\n\n2\n\n\n24.629\n\n\n1\n\n\n3\n\n\n2\n\n\n3\n\n\n24.806\n\n\n1\n\n\n3\n\n\n2\n\n\n3\n\n\n25.044\n\n\n1\n\n\n3\n\n\n3\n\n\n1\n\n\n25.497\n\n\n1\n\n\n3\n\n\n3\n\n\n1\n\n\n24.865\n\n\n2\n\n\n1\n\n\n1\n\n\n3\n\n\n20.222\n\n\n2\n\n\n1\n\n\n1\n\n\n3\n\n\n21.339\n\n\n2\n\n\n1\n\n\n2\n\n\n1\n\n\n21.415\n\n\n2\n\n\n1\n\n\n2\n\n\n1\n\n\n21.673\n\n\n2\n\n\n1\n\n\n3\n\n\n2\n\n\n21.441\n\n\n2\n\n\n1\n\n\n3\n\n\n2\n\n\n21.262\n\n\n2\n\n\n2\n\n\n1\n\n\n2\n\n\n20.785\n\n\n2\n\n\n2\n\n\n1\n\n\n2\n\n\n21.933\n\n\n2\n\n\n2\n\n\n2\n\n\n3\n\n\n21.986\n\n\n2\n\n\n2\n\n\n2\n\n\n3\n\n\n22.330\n\n\n2\n\n\n2\n\n\n3\n\n\n1\n\n\n21.544\n\n\n2\n\n\n2\n\n\n3\n\n\n1\n\n\n22.038\n\n\n2\n\n\n3\n\n\n1\n\n\n3\n\n\n20.319\n\n\n2\n\n\n3\n\n\n1\n\n\n3\n\n\n19.278\n\n\n2\n\n\n3\n\n\n2\n\n\n1\n\n\n21.212\n\n\n2\n\n\n3\n\n\n2\n\n\n1\n\n\n21.803\n\n\n2\n\n\n3\n\n\n3\n\n\n2\n\n\n22.012\n\n\n2\n\n\n3\n\n\n3\n\n\n2\n\n\n22.925\n\n\nVous pouvez telechager ce tableau ici dan ce lien.\nANOVA\nAnova without Interactions\n\nAnalysis of Variance Table\n\nResponse: value\n            Df  Sum Sq Mean Sq  F value  Pr(>F)    \nRaster       1 116.067 116.067 379.6720 < 2e-16 ***\nTemperature  2   0.903   0.452   1.4777 0.24541    \nLayer        2   2.972   1.486   4.8610 0.01541 *  \nSpeed        2   1.060   0.530   1.7335 0.19509    \nResiduals   28   8.560   0.306                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nAnova with Interactions\n\nAnalysis of Variance Table\n\nResponse: value\n                   Df  Sum Sq Mean Sq  F value    Pr(>F)    \nRaster              1 116.067 116.067 620.1353 2.124e-15 ***\nTemperature         2   0.903   0.452   2.4136  0.117862    \nLayer               2   2.972   1.486   7.9397  0.003373 ** \nSpeed               2   1.060   0.530   2.8314  0.085282 .  \nRaster:Temperature  2   0.310   0.155   0.8284  0.452735    \nRaster:Layer        2   1.875   0.938   5.0090  0.018643 *  \nRaster:Speed        2   0.618   0.309   1.6503  0.219744    \nTemperature:Layer   4   2.388   0.597   3.1896  0.038102 *  \nResiduals          18   3.369   0.187                       \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nGraphic of the means\n\n\n\nInteraction Raster Vs. Layer\n\n\n\nInteraction Temperature Vs. Layer\n\n\n\n\n\n\n",
+      "last_modified": "2021-03-04T19:41:43+01:00"
+    }
+  ],
+  "collections": []
+}

@@ -1,0 +1,92 @@
+---
+title: "About this site"
+description: |
+  Some additional details about the website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r Data, eval=FALSE}
+
+# Reading data ----
+## Loading the data from Excel
+files <- dir("Data Decembre 2020/", recursive=TRUE, full.names=TRUE, pattern="*.xlsx")
+
+## Infor for PLA
+#PLA  <- lapply(excel_sheets(path = files[2])[8:9], read_excel, path = files[2] ) %>% set_names("Amplitude", "Frequency") 
+
+#PLA %>% map("Amplitude", rownames_to_column(var = "ID") )
+
+  
+Test <- read_excel(files[2], sheet = "Amplitude") %>% 
+  rownames_to_column(var = "ID") %>% gather(ID, value = "Amplitude") %>% 
+  rownames_to_column(var = "Measure")
+
+Test2 <- 
+  read_excel(files[2], sheet = "Frequency") %>% 
+  rownames_to_column(var = "ID") %>% 
+  gather(ID, value = "Frequency") %>% rownames_to_column(var = "Measure")
+
+
+## Raw data of PLA
+PLA <- left_join(Test, Test2, by=c("Measure", "ID" ))
+
+## Creating a nested dataframe
+PLA <- PLA %>% group_by(ID) %>% nest()
+
+
+rm(Test, Test2)
+```
+
+
+
+
+```{r Resonance, eval=FALSE}
+
+Resonance_fun <- function(Test) {
+
+  # Split the data in two ranges
+  Range_1 <- Test[1:2500,]
+  Range_2 <- Test[2500 : 4096 ,]
+  
+  A <- Range_1$Frequency[ggpmisc:::find_peaks(Range_1$Amplitude, span = 5,
+  ignore_threshold = 0.5)]
+  
+  B <- Range_2$Frequency[ggpmisc:::find_peaks(Range_2$Amplitude, span = 5,
+  ignore_threshold = 0.11)]
+
+  Modes <- tibble(
+    Mode.1 = A[1],
+    Mode.2 = A[2],
+    Mode.3 = B[1],
+    Mode.4 = B[2],
+    Mode.5 = B[3]
+  )
+  
+  return(Modes)
+}
+
+## Adding the Resonance values
+PLA <- PLA %>% mutate(Freq = map_df( data, Resonance_fun))   
+
+
+require(ggpmisc)
+## Testtin the peak function
+Test <- PLA[[2]][[36]]
+
+Test$Frequency[ggpmisc:::find_peaks(Test$Amplitude, span = 10, ignore_threshold = 0.5)]
+
+ggplot(Test[1:2500,] , aes(x = Frequency, y= Amplitude)) +
+    geom_point( alpha = 1/10) + stat_peaks(col = "red", span = 5,
+  ignore_threshold = 0.5) 
+
+ggplot(Test[2500 : 4096 ,] , aes(x = Frequency, y= Amplitude)) +
+    geom_point( alpha = 1/10) + stat_peaks(col = "red", span = 5,
+  ignore_threshold = 0.11) 
+
+
+```
+
+
